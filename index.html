@@ -1,93 +1,91 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SULTANAT APP - FULL</title><style>*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}body{background:#08080c;color:#fff;min-height:100vh}.screen{display:none;min-height:100vh}.screen.active{display:flex;flex-direction:column}.center{flex:1;display:flex;flex-direction:column;justify-content:center;padding:24px}.logo{font-size:50px;text-align:center}.card{background:#1a1a22;margin:10px 12px;border-radius:18px;padding:16px;border:1px solid #2a2a35}input,select{width:100%;padding:14px;border-radius:12px;background:#111;border:1px solid #333;color:#fff;margin:8px 0;font-size:15px}.btn{width:100%;background:linear-gradient(135deg,#4a00e0,#8e2de2);border:0;color:#fff;padding:15px;border-radius:12px;font-weight:900;cursor:pointer;margin-top:10px;font-size:16px}.header{background:linear-gradient(135deg,#4a00e0,#8e2de2);padding:16px;text-align:center;position:sticky;top:0;z-index:99}.tabs{display:flex;background:#14141a;border-bottom:1px solid #222;position:sticky;top:66px;z-index:90}.tab{flex:1;padding:14px 2px;text-align:center;font-size:11px;opacity:.5;cursor:pointer;border-bottom:3px solid transparent}.tab.active{opacity:1;border-color:#8e2de2;background:#1e1e28}.score{display:flex;justify-content:space-between;background:#121216;padding:11px;border-radius:10px;margin:6px 0;border:1px solid #222;font-size:13px}.video{width:100%;aspect-ratio:16/9;background:#000;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:8px 0;overflow:hidden}</style></head><body>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SULTANAT APP - FULL</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
+body{background:#0a0a0f;color:#fff}
+.page{display:none}.page.active{display:block}
+.header{background:linear-gradient(90deg,#4a00e0,#8e2de2);padding:18px;text-align:center}
+.tabs{display:flex;background:#15151b;position:sticky;top:0}
+.tab{flex:1;padding:14px;text-align:center;opacity:.5;border-bottom:3px solid transparent;font-size:12px}
+.tab.active{opacity:1;border-color:#8e2de2;background:#1e1e28}
+.card{background:#1c1c24;margin:12px;padding:16px;border-radius:16px;border:1px solid #2a2a35}
+.btn{width:100%;padding:14px;background:linear-gradient(90deg,#4a00e0,#8e2de2);border:0;color:#fff;border-radius:12px;font-weight:bold;margin-top:8px}
+input{width:100%;padding:13px;background:#111;border:1px solid #333;border-radius:10px;color:#fff;margin:6px 0}
+.score{display:flex;justify-content:space-between;background:#111;padding:10px;border-radius:10px;margin:6px 0}
+</style>
+</head>
+<body>
 
-<!-- START SCREEN -->
-<div id="login" class="screen active">
-<div class="center" style="text-align:center">
-<div class="logo">👑</div>
-<h1 style="margin:10px 0">SULTANAT APP</h1>
-<p style="color:#888;font-size:13px;margin-bottom:20px">Wazir • Voting • Referral • Female Bonus</p>
+<div id="login" class="page active" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:20px;text-align:center">
+<div style="font-size:60px">👑</div>
+<h1>SULTANAT APP</h1>
+<p style="color:#888;font-size:13px;margin:8px 0 20px">Full App - Start to End - FREE</p>
 <div class="card" style="text-align:left">
-<h3>🚀 Start Sultanat</h3>
-<input id="name" placeholder="Aapka Naam Likho...">
-<select id="gender0"><option value="male">Male</option><option value="female">Female (+10% Bonus)</option></select>
-<input id="refcode" placeholder="Referral Code (Optional)">
-<button class="btn" onclick="startApp()">Sultanat Me Dakhil Ho 👑</button>
-<p style="font-size:11px;color:#666;margin-top:10px;text-align:center">100% FREE • No Server • YouTube Unlisted</p>
-</div>
+<input id="n" placeholder="Naam likho">
+<select id="g" style="width:100%;padding:13px;background:#111;border:1px solid #333;color:#fff;border-radius:10px;margin:6px 0"><option value="male">Male</option><option value="female">Female (+10% Bonus)</option></select>
+<button class="btn" onclick="go()">ENTER SULTANAT 👑</button>
 </div>
 </div>
 
-<!-- MAIN APP -->
-<div id="main" class="screen">
-<div class="header"><h3>👑 SULTANAT • <span id="uname">User</span> <span style="float:right;font-size:11px;background:#00000066;padding:4px 8px;border-radius:20px">● LIVE</span></h3></div>
+<div id="app" class="page">
+<div class="header"><h3>👑 SULTANAT - <span id="uname">User</span> - LIVE</h3></div>
 <div class="tabs">
-<div class="tab active" onclick="tab('home',this)">🏠 HOME</div>
-<div class="tab" onclick="tab('wazir',this)">👑 WAZIR</div>
-<div class="tab" onclick="tab('vote',this)">🗳️ VOTE</div>
-<div class="tab" onclick="tab('rank',this)">🏆 RANK</div>
+<div class="tab active" onclick="openT('h',this)">HOME</div>
+<div class="tab" onclick="openT('w',this)">WAZIR</div>
+<div class="tab" onclick="openT('v',this)">VOTE</div>
+<div class="tab" onclick="openT('r',this)">RANK</div>
 </div>
 
-<div id="home" class="page">
-<div class="card"><span style="background:#8e2de2;padding:4px 10px;border-radius:20px;font-size:11px">🔥 LIVE NOW</span><h3 style="margin:8px 0">Wazir ka Paigham</h3><div class="video" id="mainVid">▶️ Video Yahan</div></div>
-<div class="card"><h3>📊 Aapka Score</h3><div class="score"><span>🗳️ Vote</span><b id="sVote">0%</b></div><div class="score"><span>🔗 Referral</span><b id="sRef">0%</b></div><div class="score"><span>⚡ Active</span><b id="sAct">0% (0m)</b></div><div class="score" style="border:1px dashed #ff5eae"><span>💖 Bonus</span><b id="sBonus">0%</b></div><div style="background:#111;padding:12px;border-radius:12px;text-align:center;margin-top:10px"><h1 id="total" style="color:#a970ff">0</h1><p style="font-size:11px;color:#888">TOTAL SULTANAT SCORE</p></div></div>
+<div id="h" class="page active">
+<div class="card"><h3>🔥 Wazir Live</h3><div style="width:100%;aspect-ratio:16/9;background:#000;border-radius:12px;display:flex;align-items:center;justify-content:center;margin:10px 0" id="mv">▶️</div></div>
+<div class="card"><h3>Score</h3><div class="score"><span>Vote 50%</span><b id="sv">0</b></div><div class="score"><span>Referral 30%</span><b id="sr">0</b></div><div class="score"><span>Active 20%</span><b id="sa">0</b></div><div class="score" style="border:1px dashed #ff5eae"><span>Female +10%</span><b id="sb">0</b></div><div style="text-align:center;background:#111;padding:10px;border-radius:10px;margin-top:10px"><h1 id="tot" style="color:#a970ff">0</h1></div></div>
 </div>
 
-<div id="wazir" class="page" style="display:none">
-<div class="card"><h3>👑 Wazir Panel - FREE YouTube</h3><p style="font-size:11px;color:#888;margin:5px 0">Unlisted link dalo, koi paisa nahi, unlimited videos</p><input id="ytLink" placeholder="YouTube Link (youtube.com/watch?v=...)"><input id="ytTitle" placeholder="Title"><button class="btn" onclick="addVideo()">+ VIDEO LIVE KARO</button></div>
-<div id="wList"></div>
+<div id="w" class="page">
+<div class="card"><input id="yl" placeholder="YouTube Link"><input id="yt" placeholder="Title"><button class="btn" onclick="addV()">+ LIVE</button></div>
+<div id="wl"></div>
 </div>
 
-<div id="vote" class="page" style="display:none">
-<div class="card"><h3>🗳️ Vote - 50% Power</h3><button class="btn" onclick="voteA(this)">Candidate A 👑</button><button class="btn" style="background:#2a2a35;margin-top:8px" onclick="voteB(this)">Candidate B 👑</button><p id="vMsg" style="display:none;color:#00ff88;text-align:center;margin-top:10px">✅ 50% Added!</p></div>
-<div class="card"><h3>🔗 Aapka Referral Link - 30%</h3><div style="background:#111;border:1px dashed #8e2de2;padding:10px;border-radius:10px;word-break:break-all"><b id="myLink" style="color:#a970ff"></b></div><button class="btn" style="background:#2a2a35" onclick="copyLink()">Copy Link</button><p style="font-size:13px;margin-top:8px">Referrals: <b id="rCount">0</b></p></div>
+<div id="v" class="page">
+<div class="card"><button class="btn" onclick="vte(this)">Vote A</button><button class="btn" style="background:#333" onclick="vte(this)">Vote B</button></div>
+<div class="card"><p id="mlink" style="color:#a970ff;word-break:break-all;background:#111;padding:10px;border-radius:10px"></p><button class="btn" style="background:#333" onclick="copyL()">Copy Referral Link</button><p style="margin-top:8px">Refs: <b id="rc">0</b></p></div>
 </div>
 
-<div id="rank" class="page" style="display:none">
-<div class="card" style="text-align:center"><div style="width:60px;height:60px;background:linear-gradient(135deg,#4a00e0,#8e2de2);border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:28px">👤</div><h3 id="rankName" style="margin-top:6px">User</h3><p id="rankGender" style="font-size:12px;color:#aaa"></p></div>
-<div class="card"><h3>🏆 Leaderboard</h3><div class="score"><span>1. Aap</span><b id="lbMe">0</b></div><div class="score"><span>2. Ayesha (Female +10)</span><b>440</b></div><div class="score"><span>3. Wazir Khan</span><b>380</b></div><div class="score"><span>4. Sultan</span><b>310</b></div></div>
+<div id="r" class="page">
+<div class="card" style="text-align:center"><h2 id="rn">User</h2><p id="rg" style="color:#888;font-size:12px"></p><h1 id="lb" style="color:#a970ff;margin-top:10px">0</h1><p>Your Rank Score</p></div>
 </div>
+
 </div>
 
 <script>
-let data={name:'',gender:'male',vote:0,ref:0,active:0,bonus:0,refCount:0,activeMin:0};
-function startApp(){
- let n=document.getElementById('name').value||'Sultan';
- let g=document.getElementById('gender0').value;
- data.name=n; data.gender=g; data.bonus=g==='female'?10:0;
- document.getElementById('uname').innerText=n;
- document.getElementById('rankName').innerText=n;
- document.getElementById('rankGender').innerText=g==='female'?'Female (+10% Bonus)':'Male';
- document.getElementById('myLink').innerText='sultanat.app/r/'+n.toLowerCase().replace(/\s+/g,'')+Math.floor(Math.random()*99);
+let d={vote:0,ref:0,active:0,bonus:0,rc:0,am:0}
+function go(){
+ let name=document.getElementById('n').value||'Sultan';
+ let g=document.getElementById('g').value;
+ d.bonus=g=='female'?10:0;
+ document.getElementById('uname').innerText=name;
+ document.getElementById('rn').innerText=name;
+ document.getElementById('rg').innerText=g=='female'?'Female Bonus +10%':'Male';
+ document.getElementById('mlink').innerText='sultanat.app/r/'+name.toLowerCase()+Math.floor(Math.random()*99);
  document.getElementById('login').classList.remove('active');
- document.getElementById('main').classList.add('active');
+ document.getElementById('app').classList.add('active');
+ document.getElementById('h').classList.add('active');
  calc();
 }
-function tab(id,el){
- document.querySelectorAll('.page').forEach(p=>p.style.display='none');
+function openT(id,el){
+ document.querySelectorAll('#app.page').forEach(p=>p.classList.remove('active'));
  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
- document.getElementById(id).style.display='block'; el.classList.add('active');
+ document.getElementById(id).classList.add('active');el.classList.add('active');
 }
-function voteA(b){data.vote=50;b.innerText='✅ Voted A';b.style.background='#00c853';document.getElementById('vMsg').style.display='block';calc();}
-function voteB(b){data.vote=50;b.innerText='✅ Voted B';b.style.background='#00c853';document.getElementById('vMsg').style.display='block';calc();}
-function copyLink(){navigator.clipboard.writeText(document.getElementById('myLink').innerText);data.refCount++;data.ref=Math.min(data.refCount*6,30);document.getElementById('rCount').innerText=data.refCount;calc();alert('Copied! + Referral');}
-function calc(){
- let tot=data.vote+data.ref+data.active+data.bonus;
- document.getElementById('sVote').innerText=data.vote+'%';
- document.getElementById('sRef').innerText=data.ref+'%';
- document.getElementById('sAct').innerText=data.active+'% ('+data.activeMin+'m)';
- document.getElementById('sBonus').innerText=data.bonus+'%';
- document.getElementById('total').innerText=tot;
- document.getElementById('lbMe').innerText=tot;
-}
-function addVideo(){
- let link=document.getElementById('ytLink').value; let title=document.getElementById('ytTitle').value||'Wazir Video';
- if(!link){alert('Link dalo');return}
- let id=link.includes('v=')?link.split('v=')[1].split('&')[0]:link.split('/').pop();
- let html=`<div class="card"><h4>${title}</h4><div class="video"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/${id}" frameborder="0" allowfullscreen></iframe></div></div>`;
- document.getElementById('wList').insertAdjacentHTML('afterbegin',html);
- document.getElementById('mainVid').innerHTML=`<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${id}" frameborder="0" allowfullscreen></iframe>`;
- document.getElementById('ytLink').value='';document.getElementById('ytTitle').value='';
- alert('LIVE!');
-}
-setInterval(()=>{if(document.getElementById('main').classList.contains('active')){data.activeMin++;data.active=Math.min(Math.floor(data.activeMin/2),20);calc();}},60000);
-</script></body></html>
+function vte(b){d.vote=50;b.innerText='✅ Voted';b.style.background='#00c853';calc();}
+function copyL(){navigator.clipboard.writeText(document.getElementById('mlink').innerText);d.rc++;d.ref=Math.min(d.rc*5,30);document.getElementById('rc').innerText=d.rc;calc();alert('Link Copied!')}
+function calc(){let t=d.vote+d.ref+d.active+d.bonus;document.getElementById('sv').innerText=d.vote+'%';document.getElementById('sr').innerText=d.ref+'%';document.getElementById('sa').innerText=d.active+'%';document.getElementById('sb').innerText=d.bonus+'%';document.getElementById('tot').innerText=t;document.getElementById('lb').innerText=t;}
+function addV(){let l=document.getElementById('yl').value;if(!l)return alert('Link dalo');let id=l.includes('v=')?l.split('v=')[1].split('&')[0]:l.split('/').pop();let h=`<div class="card"><h4>${document.getElementById('yt').value||'Wazir Video'}</h4><div style="aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/${id}" frameborder="0" allowfullscreen></iframe></div></div>`;document.getElementById('wl').insertAdjacentHTML('afterbegin',h);document.getElementById('mv').innerHTML=`<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${id}" frameborder="0" allowfullscreen></iframe>`;document.getElementById('yl').value='';}
+setInterval(()=>{if(document.getElementById('app').classList.contains('active')){d.am++;d.active=Math.min(Math.floor(d.am/2),20);calc();}},60000);
+</script>
+</body>
+</html>
