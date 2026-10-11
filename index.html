@@ -1,91 +1,90 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SULTANAT APP - FULL</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golden Hera - 10K Supply</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
-body{background:#0a0a0f;color:#fff}
-.page{display:none}.page.active{display:block}
-.header{background:linear-gradient(90deg,#4a00e0,#8e2de2);padding:18px;text-align:center}
-.tabs{display:flex;background:#15151b;position:sticky;top:0}
-.tab{flex:1;padding:14px;text-align:center;opacity:.5;border-bottom:3px solid transparent;font-size:12px}
-.tab.active{opacity:1;border-color:#8e2de2;background:#1e1e28}
-.card{background:#1c1c24;margin:12px;padding:16px;border-radius:16px;border:1px solid #2a2a35}
-.btn{width:100%;padding:14px;background:linear-gradient(90deg,#4a00e0,#8e2de2);border:0;color:#fff;border-radius:12px;font-weight:bold;margin-top:8px}
-input{width:100%;padding:13px;background:#111;border:1px solid #333;border-radius:10px;color:#fff;margin:6px 0}
-.score{display:flex;justify-content:space-between;background:#111;padding:10px;border-radius:10px;margin:6px 0}
+body{margin:0;font-family:Arial;background:#0f0f0f;color:white}
+.header{background:#111;padding:15px;text-align:center;color:#f7c948;font-weight:bold;font-size:22px;border-bottom:2px solid #f7c948}
+.card{background:#1c1c1e;margin:15px;padding:20px;border-radius:15px;text-align:center;border:1px solid #333}
+.price{font-size:45px;font-weight:bold;color:#fff} .price span{color:#f7c948}
+.btn{width:45%;padding:15px;border:none;border-radius:10px;font-size:20px;font-weight:bold;color:white;margin:5px}
+.buy{background:#00c853} .sell{background:#d50000} .update{background:#00c853;width:100%;margin-top:15px}
+input{width:90%;padding:12px;border-radius:8px;border:1px solid #f7c948;background:#000;color:white;text-align:center;font-size:18px}
+.small{color:#888;font-size:14px;margin-top:10px}
+.toggle{display:flex;justify-content:space-between;align-items:center;background:#1c1c1e;margin:10px 15px;padding:15px;border-radius:10px}
 </style>
 </head>
 <body>
-
-<div id="login" class="page active" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:20px;text-align:center">
-<div style="font-size:60px">👑</div>
-<h1>SULTANAT APP</h1>
-<p style="color:#888;font-size:13px;margin:8px 0 20px">Full App - Start to End - FREE</p>
-<div class="card" style="text-align:left">
-<input id="n" placeholder="Naam likho">
-<select id="g" style="width:100%;padding:13px;background:#111;border:1px solid #333;color:#fff;border-radius:10px;margin:6px 0"><option value="male">Male</option><option value="female">Female (+10% Bonus)</option></select>
-<button class="btn" onclick="go()">ENTER SULTANAT 👑</button>
+<div class="header">GOLDEN HERA CONTROL</div>
+<div id="userView">
+  <div class="card">
+    <div class="small">Current Price LIVE</div>
+    <div class="price"><span id="uPrice">500</span> <span style="font-size:25px">Coins</span></div>
+    <div class="small">1 Hera = <span id="uPrice2">500</span> Coins | Fee 2%</div>
+  </div>
+  <center>
+    <button class="btn buy" onclick="buy()">BUY</button>
+    <button class="btn sell" onclick="sell()">SELL</button>
+  </center>
+  <div class="card">
+    My Hera: <b id="myHera">0</b> | My Coins: <b id="myCoins">5000</b><br>
+    <div class="small">Min Withdraw: 20 Hera</div>
+    <button id="wdBtn" style="display:none;margin-top:10px;padding:10px 20px;background:orange;border:none;border-radius:5px" onclick="alert('Withdraw Request Sent!')">WITHDRAW</button>
+    <div id="wdMsg" class="small">20 Hera hone par withdraw khulega</div>
+  </div>
+  <center><button onclick="showAdmin()" style="background:none;border:none;color:#f7c948;margin:20px">Go to Owner Panel →</button></center>
+   </div><div id="adminView" style="display:none">
+  <div class="card">
+    <div class="small">Current Price</div>
+    <div class="price">500 Coins <span style="font-size:12px;color:#00ff00">● LIVE</span></div>
+    <div style="margin-top:15px;text-align:left;color:#f7c948">New Price</div>
+    <input id="newPrice" type="number" placeholder="Enter new price...">
+  </div>
+  <div style="display:flex;gap:10px;margin:0 15px">
+    <div class="card" style="flex:1;margin:0"><div class="small">Total Supply</div><div style="font-size:22px;font-weight:bold">10,000</div></div>
+    <div class="card" style="flex:1;margin:0"><div class="small">% Commission</div><div style="font-size:22px;font-weight:bold">2%</div></div>
+  </div>
+  <div class="toggle"><div><b>Auto Mode</b><br><small>Auto adjust price</small></div><input type="checkbox" checked style="width:20px"></div>
+  <div class="toggle"><div>Min Withdraw<br><b style="font-size:20px">20 Hera</b></div></div>
+  <div style="margin:15px"><button class="btn update" onclick="updatePrice()">⟳ UPDATE</button>
+  <button onclick="showUser()" style="width:100%;margin-top:10px;padding:10px;background:#333;color:white;border:none;border-radius:8px">← Back to Market</button></div>
+  <div class="card"><div class="small">Owner Earning (2% Fee)</div><div style="font-size:24px;color:#00ff00"><span id="earning">0</span> Coins</div></div>
 </div>
-</div>
-
-<div id="app" class="page">
-<div class="header"><h3>👑 SULTANAT - <span id="uname">User</span> - LIVE</h3></div>
-<div class="tabs">
-<div class="tab active" onclick="openT('h',this)">HOME</div>
-<div class="tab" onclick="openT('w',this)">WAZIR</div>
-<div class="tab" onclick="openT('v',this)">VOTE</div>
-<div class="tab" onclick="openT('r',this)">RANK</div>
-</div>
-
-<div id="h" class="page active">
-<div class="card"><h3>🔥 Wazir Live</h3><div style="width:100%;aspect-ratio:16/9;background:#000;border-radius:12px;display:flex;align-items:center;justify-content:center;margin:10px 0" id="mv">▶️</div></div>
-<div class="card"><h3>Score</h3><div class="score"><span>Vote 50%</span><b id="sv">0</b></div><div class="score"><span>Referral 30%</span><b id="sr">0</b></div><div class="score"><span>Active 20%</span><b id="sa">0</b></div><div class="score" style="border:1px dashed #ff5eae"><span>Female +10%</span><b id="sb">0</b></div><div style="text-align:center;background:#111;padding:10px;border-radius:10px;margin-top:10px"><h1 id="tot" style="color:#a970ff">0</h1></div></div>
-</div>
-
-<div id="w" class="page">
-<div class="card"><input id="yl" placeholder="YouTube Link"><input id="yt" placeholder="Title"><button class="btn" onclick="addV()">+ LIVE</button></div>
-<div id="wl"></div>
-</div>
-
-<div id="v" class="page">
-<div class="card"><button class="btn" onclick="vte(this)">Vote A</button><button class="btn" style="background:#333" onclick="vte(this)">Vote B</button></div>
-<div class="card"><p id="mlink" style="color:#a970ff;word-break:break-all;background:#111;padding:10px;border-radius:10px"></p><button class="btn" style="background:#333" onclick="copyL()">Copy Referral Link</button><p style="margin-top:8px">Refs: <b id="rc">0</b></p></div>
-</div>
-
-<div id="r" class="page">
-<div class="card" style="text-align:center"><h2 id="rn">User</h2><p id="rg" style="color:#888;font-size:12px"></p><h1 id="lb" style="color:#a970ff;margin-top:10px">0</h1><p>Your Rank Score</p></div>
-</div>
-
-</div>
-
 <script>
-let d={vote:0,ref:0,active:0,bonus:0,rc:0,am:0}
-function go(){
- let name=document.getElementById('n').value||'Sultan';
- let g=document.getElementById('g').value;
- d.bonus=g=='female'?10:0;
- document.getElementById('uname').innerText=name;
- document.getElementById('rn').innerText=name;
- document.getElementById('rg').innerText=g=='female'?'Female Bonus +10%':'Male';
- document.getElementById('mlink').innerText='sultanat.app/r/'+name.toLowerCase()+Math.floor(Math.random()*99);
- document.getElementById('login').classList.remove('active');
- document.getElementById('app').classList.add('active');
- document.getElementById('h').classList.add('active');
- calc();
+let price = localStorage.getItem('hera_price')? parseInt(localStorage.getItem('hera_price')) : 500;
+let myHera = localStorage.getItem('my_hera')? parseInt(localStorage.getItem('my_hera')) : 0;
+let myCoins = localStorage.getItem('my_coins')? parseInt(localStorage.getItem('my_coins')) : 5000;
+let earning = localStorage.getItem('earning')? parseInt(localStorage.getItem('earning')) : 0;
+function refresh(){
+  document.getElementById('uPrice').innerText = price;
+  document.getElementById('uPrice2').innerText = price;
+  document.getElementById('myHera').innerText = myHera;
+  document.getElementById('myCoins').innerText = myCoins;
+  document.getElementById('earning').innerText = earning;
+  if(myHera>=20){document.getElementById('wdBtn').style.display='block';document.getElementById('wdMsg').style.display='none';}
+  else{document.getElementById('wdBtn').style.display='none';document.getElementById('wdMsg').style.display='block';}
+  localStorage.setItem('hera_price',price);
+  localStorage.setItem('my_hera',myHera);
+  localStorage.setItem('my_coins',myCoins);
+  localStorage.setItem('earning',earning);
 }
-function openT(id,el){
- document.querySelectorAll('#app.page').forEach(p=>p.classList.remove('active'));
- document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
- document.getElementById(id).classList.add('active');el.classList.add('active');
+function buy(){
+  let fee = Math.floor(price*0.02); let cost = price+fee;
+  if(myCoins>=cost){myHera++;myCoins-=cost;earning+=fee;refresh();alert('1 Hera Bought! Fee '+fee+' Owner ko gaya');}
+  else alert('Coins Kam Hain!');
 }
-function vte(b){d.vote=50;b.innerText='✅ Voted';b.style.background='#00c853';calc();}
-function copyL(){navigator.clipboard.writeText(document.getElementById('mlink').innerText);d.rc++;d.ref=Math.min(d.rc*5,30);document.getElementById('rc').innerText=d.rc;calc();alert('Link Copied!')}
-function calc(){let t=d.vote+d.ref+d.active+d.bonus;document.getElementById('sv').innerText=d.vote+'%';document.getElementById('sr').innerText=d.ref+'%';document.getElementById('sa').innerText=d.active+'%';document.getElementById('sb').innerText=d.bonus+'%';document.getElementById('tot').innerText=t;document.getElementById('lb').innerText=t;}
-function addV(){let l=document.getElementById('yl').value;if(!l)return alert('Link dalo');let id=l.includes('v=')?l.split('v=')[1].split('&')[0]:l.split('/').pop();let h=`<div class="card"><h4>${document.getElementById('yt').value||'Wazir Video'}</h4><div style="aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/${id}" frameborder="0" allowfullscreen></iframe></div></div>`;document.getElementById('wl').insertAdjacentHTML('afterbegin',h);document.getElementById('mv').innerHTML=`<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${id}" frameborder="0" allowfullscreen></iframe>`;document.getElementById('yl').value='';}
-setInterval(()=>{if(document.getElementById('app').classList.contains('active')){d.am++;d.active=Math.min(Math.floor(d.am/2),20);calc();}},60000);
+function sell(){
+  if(myHera>0){let fee=Math.floor(price*0.02);myHera--;myCoins+=(price-fee);earning+=fee;refresh();alert('1 Hera Sold!');}
+  else alert('Aap ke pas Hera nahi!');
+}
+function updatePrice(){
+  let np = document.getElementById('newPrice').value;
+  if(np){price=parseInt(np);refresh();alert('Price Update! Ab User ko '+price+' dikhega');showUser();}
+}
+function showAdmin(){document.getElementById('userView').style.display='none';document.getElementById('adminView').style.display='block';}
+function showUser(){document.getElementById('adminView').style.display='none';document.getElementById('userView').style.display='block';}
+refresh();
 </script>
 </body>
 </html>
